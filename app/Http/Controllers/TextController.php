@@ -51,9 +51,16 @@ class TextController extends Controller
     }
 
     public function getUserData(Request $request){
-        $userAllData = $request->all();
+        //$userAllData = $request->all();
+        $name=$request->input('name');
+        $age=$request->input('age');
+        $email=$request->input('email');
+        
         return response()->json([
-            'user_data' => $userAllData,
+            'name' => $name,
+            'age' => $age,
+            'email' => $email,
+            'phone' => $request->has('phone'),
             'message' => 'User data retrieved successfully'
         ]);
     }
