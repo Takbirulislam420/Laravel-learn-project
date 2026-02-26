@@ -1,41 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Home page</title>
 </head>
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{{ route('home') }}">Takbir Site</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link active" href="{{ route('home') }}">Home</a>
-        <a class="nav-link" href="{{ route('features') }}">Features</a>
-        <a class="nav-link" href="{{ route('pricing') }}">Pricing</a>
-      </div>
-    </div>
+  <div class="container">
+      <ul>
+    <li><a href="{{ route('home') }}">Home</a></li>
+    <li><a href="{{ route('about') }}">About Us</a></li>
+    <li><a href="{{ route('contact') }}">Contact Us</a></li>
+  </ul>
   </div>
-</nav>
 
-<h1 class="text-center mt-4">Home</h1>
+  <h1>Welcome to the Home Page!</h1>
 
-<!-- Marquee is deprecated -->
-<p class="text-center text-primary fw-bold">
-    Selamat Datang Di Website Saya
-</p>
+  <div class="users-list">
+    <h2>Users List:</h2>
+    <ul>
+      @foreach($users_form_controller as $user)
+        <li>Name is:{{ $user['name'] }} and email is:{{ $user['email'] }}</li>
+      @endforeach
+    </ul>
+  </div>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <pre>{{ print_r($users_form_controller) }}</pre>
 
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Age</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach($users_form_controller as $user)
+          <tr>
+            <td>{{ $user['id'] }}</td>
+            <td>{{ $user['name'] }}</td>
+            <td>{{ $user['email'] }}</td>
+            <td>{{ $user['age'] }}</td>
+            <td>{{ $user['is_active'] ? 'Active' : 'Inactive' }}</td>
+          </tr>
+        @endforeach
+      </tbody>
+  </div>
+
+  
 </body>
 </html>
