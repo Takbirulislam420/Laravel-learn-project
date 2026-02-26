@@ -26,4 +26,7 @@ Route::middleware('guest.redirect')->group(function () {
 Route::middleware('check.user')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/logout', [LoginController::class, 'logoutUser'])->name('logout');
+    Route::get('/user', function(){
+        return view('userdata');
+    })->name('userdata');
 });

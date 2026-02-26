@@ -25,8 +25,10 @@
         <a class="navbar-brand" href="#">MyApp</a>
 
         <div class="d-flex align-items-center">
+            <a href="{{ route('userdata') }}" class="btn btn-light btn-sm me-3">
+                View User Data </a>
             <span class="text-white me-3">
-                Welcome,  {{ auth()->user()->name }}
+                Welcome,  {{ auth()->user()->name }} and {{ auth()->user()->email }} 
             </span>
 
             <form action="{{ route('logout') }}" method="POST">
@@ -76,6 +78,10 @@
         </div>
 
     </div>
+</div>
+<div class="text-center mt-5">
+    <h1 class="display-4">My name is {{ auth()->user()->name }}</h1>
+    <small class="text-muted">&copy; 2024 MyApp. All rights reserved.</small>
 </div>
 
 </body>
