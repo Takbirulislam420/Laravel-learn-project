@@ -7,7 +7,7 @@
     <title>wellcome</title>
 </head>
 <body>
-    <h1>wellcome to laravel</h1>
+    <h1>Welcome to Laravel</h1>
     
 </body>
 </html>
