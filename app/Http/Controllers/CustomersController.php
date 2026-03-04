@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customers;
 use App\Http\Requests\StoreCustomersRequest;
 use App\Http\Requests\UpdateCustomersRequest;
+use App\Models\Customer;
 
 class CustomersController extends Controller
 {
@@ -13,7 +14,19 @@ class CustomersController extends Controller
      */
     public function index()
     {
-        //
+        // $customers = Customer::with('profile')
+        //             ->orderBy('id', 'desc')
+        //             ->limit(3)
+        //             ->get();
+
+        $customers = Customer::with(['orders.orderItems.product' => function ($query) {
+            $query->select('id', 'name', 'description', 'price', 'stock_quantity')->orderBy('id', 'desc');
+        }, 'profile', 'orders.payments'])
+            ->limit(3)
+            ->get();
+
+
+        return response()->json($customers);
     }
 
     /**
@@ -35,15 +48,12 @@ class CustomersController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Customers $customers)
-    {
-        //
-    }
+    public function show(Customer $customer) {}
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Customers $customers)
+    public function edit(Customer $customer)
     {
         //
     }
@@ -51,7 +61,7 @@ class CustomersController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCustomersRequest $request, Customers $customers)
+    public function update(UpdateCustomersRequest $request, Customer $customer)
     {
         //
     }
@@ -59,7 +69,7 @@ class CustomersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Customers $customers)
+    public function destroy(Customer $customer)
     {
         //
     }

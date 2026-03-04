@@ -13,7 +13,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::whereHas('category', function ($query) {
+            $query->where('name','Electronics');
+        })->with('category')->get();
+        return response()->json($products);
     }
 
     /**
