@@ -10,4 +10,5 @@ Route::get('/', function () {
 
 Route::get('/customer', [CustomersController::class, 'index'])->name('customer.index');
 Route::get('/product', [ProductController::class, 'index'])->name('product.index');
+Route::get('/product_only', [ProductController::class, 'create'])->name('product_only.index');
 

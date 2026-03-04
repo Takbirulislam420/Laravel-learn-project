@@ -24,7 +24,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $product=Product::select('id','category_id','sku','name','description','price','stock_quantity','active')
+        ->with('category:id,name,parent_id,position')
+        ->get();
+        return response()->json($product);
     }
 
     /**
